@@ -23,7 +23,7 @@ class Map extends Component {
       ['ORP Błyskawica', 54.5194669, 18.5528247],
       ['Marina Gdynia', 54.518265, 18.5523634],
       ['Fountain in square Kościuszki', 54.5190304, 18.5482533],
-      ['Overlook on port', 54.531942, 18.5443668],
+      ['Overlook on the port', 54.531942, 18.5443668],
       ['Antoni Abraham monument ', 54.5217105, 18.5394693],
       ['Overlook Kamienna Góra (Stone Mountain)', 54.517844, 18.5406696],
       ['Cliff in Orłowo', 54.4870384, 18.5631346],
@@ -37,12 +37,21 @@ class Map extends Component {
 
     for (let allPlaces = 0; allPlaces < places.length; allPlaces++) {
           let place = places[allPlaces];
+
+          let infowindow = new google.maps.InfoWindow({
+          content: place[0],
+          });
+
           let marker = new google.maps.Marker({
             position: {lat: place[1], lng: place[2]},
             map: map,
           });
-        }
 
+          marker.addListener('click', function() {
+                infowindow.open(map, marker);
+          });
+
+    }
   }
 
   render() {
