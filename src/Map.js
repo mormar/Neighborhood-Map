@@ -3,19 +3,9 @@ import React, { Component } from 'react';
 import './index.css';
 
 class Map extends Component {
-
-  componentDidMount() {
-      window.initMap = this.initMap;
-      loadJsMap('https://maps.googleapis.com/maps/api/js?key=AIzaSyBlYjX2jC_PyB7Uo1E-lqnffUsySrZv3yY&callback=initMap');
-  }
-
-  initMap = function() {
-    let map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 54.5053387, lng: 18.538661},
-      zoom: 13
-    });
-
-    let places = [
+  state = {
+    map: {},
+    places: [
       ['Gdynia City Museum', 54.5160757, 18.5448994],
       ['Emigration Museum', 54.5331856, 18.5476213],
       ['Pier in Orłowo', 54.4835609, 18.567609],
@@ -35,8 +25,21 @@ class Map extends Component {
       ['Gdynia Film Center', 54.5164517, 18.5428894]
     ]
 
-    for (let allPlaces = 0; allPlaces < places.length; allPlaces++) {
-          let place = places[allPlaces];
+  }
+
+  componentDidMount() {
+      window.initMap = this.initMap;
+      loadJsMap('https://maps.googleapis.com/maps/api/js?key=AIzaSyBlYjX2jC_PyB7Uo1E-lqnffUsySrZv3yY&callback=initMap');
+  }
+
+  initMap = function() {
+    let map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 54.5053387, lng: 18.538661},
+      zoom: 13
+    });
+
+    for (let allPlaces = 0; allPlaces < this.state.places.length; allPlaces++) {
+          let place = this.state.places[allPlaces];
 
           let infowindow = new google.maps.InfoWindow({
           content: place[0],
@@ -55,7 +58,7 @@ class Map extends Component {
   }
 
   render() {
-
+    console.log(this.state.places);
     return (
       <div>
         <h1 id="main-taitel">Gdynia awesome places</h1>
