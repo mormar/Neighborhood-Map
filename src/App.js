@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Map from './Map.js'
+import Search from './Search.js'
 
 class App extends Component {
 
@@ -32,6 +33,9 @@ class App extends Component {
         <Map
           cityPlaces={this.state.places}>
         </Map>
+        <Search
+          cityPlaces={this.state.places}>
+        </Search>
       </div>
     );
   }

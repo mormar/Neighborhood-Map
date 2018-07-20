@@ -39,7 +39,7 @@ class Map extends Component {
 
   render() {
     console.log(this.props.cityPlaces);
-    
+
     return (
       <div>
         <h1 id="main-taitel">Gdynia awesome places</h1>
