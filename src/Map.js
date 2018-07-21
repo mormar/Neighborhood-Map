@@ -23,11 +23,11 @@ class Map extends Component {
           let place = window.props.cityPlaces[allPlaces];
 
           let infowindow = new google.maps.InfoWindow({
-          content: place[0],
+          content: place.placeName,
           });
 
           let marker = new google.maps.Marker({
-            position: {lat: place[1], lng: place[2]},
+            position: {lat: place.lat, lng: place.lng},
             map: map,
           });
 

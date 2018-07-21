@@ -16,8 +16,8 @@ class Search extends Component {
       searchedPlaces = (
         <ol>
           {this.props.cityPlaces.map((place) => (
-            <li key={place[0]}>
-              {place[0]}
+            <li key={place.placeName}>
+              {place.placeName}
             </li>
           ))}
         </ol>
