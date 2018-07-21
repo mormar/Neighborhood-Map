@@ -11,6 +11,18 @@ class Search extends Component {
    this.setState({ query: query })
   }
 
+  componentDidUpdate() {
+    if(this.state.query !== '') {
+      console.log(this.state.query);
+      this.props.cityPlaces.map((place) => {
+        if(this.state.query.toLowerCase() === place.placeName.toLowerCase()) {
+          console.log("test");
+        }
+      })
+
+    }
+  }
+
   render() {
     let searchedPlaces;
     if(this.props.cityPlaces instanceof Array) {
