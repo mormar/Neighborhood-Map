@@ -9,6 +9,7 @@ class Map extends Component {
 
   componentDidMount() {
       window.initMap = this.initMap;
+      window.props = this.props;
       loadJsMap('https://maps.googleapis.com/maps/api/js?key=AIzaSyBlYjX2jC_PyB7Uo1E-lqnffUsySrZv3yY&callback=initMap');
   }
 
@@ -18,23 +19,22 @@ class Map extends Component {
       zoom: 13
     });
 
-    // for (let allPlaces = 0; allPlaces < this.props.places.length; allPlaces++) {
-    //       let place = this.props.places[allPlaces];
-    //
-    //       let infowindow = new google.maps.InfoWindow({
-    //       content: place[0],
-    //       });
-    //
-    //       let marker = new google.maps.Marker({
-    //         position: {lat: place[1], lng: place[2]},
-    //         map: map,
-    //       });
-    //
-    //       marker.addListener('click', function() {
-    //             infowindow.open(map, marker);
-    //       });
+    for (let allPlaces = 0; allPlaces < window.props.cityPlaces.length; allPlaces++) {
+          let place = window.props.cityPlaces[allPlaces];
 
-    // }
+          let infowindow = new google.maps.InfoWindow({
+          content: place[0],
+          });
+
+          let marker = new google.maps.Marker({
+            position: {lat: place[1], lng: place[2]},
+            map: map,
+          });
+
+          marker.addListener('click', function() {
+                infowindow.open(map, marker);
+          });
+    }
   }
 
   render() {
