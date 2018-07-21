@@ -11,24 +11,29 @@ class Search extends Component {
    this.setState({ query: query })
   }
 
-  componentDidUpdate() {
-    if(this.state.query !== '') {
-      console.log(this.state.query);
-      this.props.cityPlaces.map((place) => {
-        if(this.state.query.toLowerCase() === place.placeName.toLowerCase()) {
-          console.log("test");
-        }
-      })
-
-    }
-  }
+  // componentDidUpdate() {
+  //   if(this.state.query !== '') {
+  //     console.log(this.state.query);
+  //     this.props.cityPlaces.map((place) => {
+  //       if(this.state.query.toLowerCase() === place.placeName.toLowerCase().charAt()) {
+  //         console.log("test");
+  //         console.log(place.placeName);
+  //       }
+  //     })
+  //
+  //   }
+  // }
 
   render() {
-    let searchedPlaces;
+    let searchedPlaces = this.props.cityPlaces.filter(
+      (place) => {
+        return place.placeName.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1;
+      }
+    );
     if(this.props.cityPlaces instanceof Array) {
       searchedPlaces = (
         <ol className="places-list">
-          {this.props.cityPlaces.map((place) => (
+          {searchedPlaces.map((place) => (
             <li key={place.placeName}>
               {place.placeName}
             </li>
