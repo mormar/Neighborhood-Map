@@ -9,5 +9,5 @@ Creating finally project Neighborhood Map (React) for the Front-End Web Develope
 * start the development server with `npm start`
 
 ## Dependencies
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).<br/>
 [Google Fonts](https://fonts.google.com/specimen/Merienda?selection.family=Merienda)

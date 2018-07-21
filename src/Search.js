@@ -11,6 +11,18 @@ class Search extends Component {
   }
 
   render() {
+    let searchedPlaces;
+    if(this.props.cityPlaces instanceof Array) {
+      searchedPlaces = (
+        <ol>
+          {this.props.cityPlaces.map((place) => (
+            <li key={place[0]}>
+              {place[0]}
+            </li>
+          ))}
+        </ol>
+      )
+    }
     return (
       <div>
         <div className="search-places">
@@ -25,7 +37,7 @@ class Search extends Component {
             </div>
           </div>
           <div className="search-places-results">
-
+            {searchedPlaces}
           </div>
         </div>
       </div>
