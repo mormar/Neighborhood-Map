@@ -16,7 +16,7 @@ class App extends Component {
       {placeName:'Fountain in square Kościuszki', lat:54.5190304, lng:18.5482533},
       {placeName:'Overlook on the port', lat:54.531942, lng:18.5443668},
       {placeName:'Antoni Abraham monument ', lat:54.5217105, lng:18.5394693},
-      {placeName:'Overlook Kamienna Góra (Stone Mountain)', lat:54.517844, lng:18.5406696},
+      {placeName:'Overlook Kamienna Góra ', lat:54.517844, lng:18.5406696},
       {placeName:'Cliff in Orłowo', lat:54.4870384, lng:18.5631346},
       {placeName:'Gdynia InfoBox', lat:54.5206806, lng:18.5450387},
       {placeName:'Józef Piłsudski monument', lat:54.5091416, lng:18.5391822},
@@ -30,12 +30,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Map
-          cityPlaces={this.state.places}>
-        </Map>
-        <Search
-          cityPlaces={this.state.places}>
-        </Search>
+        <h1 id="main-taitel">Gdynia awesome places</h1>
+        <div className="display-one-line ">
+          <Search
+            cityPlaces={this.state.places}>
+          </Search>
+          <Map
+            cityPlaces={this.state.places}>
+          </Map>
+        </div>
       </div>
     );
   }

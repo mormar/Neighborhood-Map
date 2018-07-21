@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './index.css';
 
 class Search extends Component {
 
@@ -14,7 +15,7 @@ class Search extends Component {
     let searchedPlaces;
     if(this.props.cityPlaces instanceof Array) {
       searchedPlaces = (
-        <ol>
+        <ol className="places-list">
           {this.props.cityPlaces.map((place) => (
             <li key={place.placeName}>
               {place.placeName}
@@ -24,21 +25,19 @@ class Search extends Component {
       )
     }
     return (
-      <div>
-        <div className="search-places">
-          <div className="search-places-bar">
-            <div className="search-places-input-wrapper">
-              <input type="text" placeholder="Search places"
-                value={this.state.query}
-                onChange={(event) => {
-                  this.updateQuery(event.target.value)
-                  }
-                }/>
-            </div>
+      <div className="search-places">
+        <div className="search-places-bar">
+          <div className="search-places-input-wrapper">
+            <input type="text" placeholder="Search places"
+              value={this.state.query}
+              onChange={(event) => {
+                this.updateQuery(event.target.value)
+                }
+              }/>
           </div>
-          <div className="search-places-results">
-            {searchedPlaces}
-          </div>
+        </div>
+        <div className="search-places-results">
+          {searchedPlaces}
         </div>
       </div>
     );

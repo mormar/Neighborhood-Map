@@ -41,8 +41,7 @@ class Map extends Component {
     console.log(this.props.cityPlaces);
 
     return (
-      <div>
-        <h1 id="main-taitel">Gdynia awesome places</h1>
+      <div className="map-view">
         <div id="map"></div>
       </div>
     );
