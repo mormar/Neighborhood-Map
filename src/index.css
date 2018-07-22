@@ -14,9 +14,7 @@ body {
 }
 
 /* search */
-.search-places {
-  width: 30%;
-}
+
 
 .search-places-bar {
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
@@ -40,12 +38,7 @@ body {
   font-family: 'Merienda', cursive;
 }
 
-.map-view {
-  width: 70%;
-}
-
-
-
+/* Responsive web design for mobile */
 @media screen and (max-width: 767px) {
 
   #main-taitel {
@@ -76,14 +69,52 @@ body {
   }
 }
 
+/* Responsive web design for tablet */
 @media screen and (min-width: 768px) and (max-width: 1099px) {
 
   .display-one-line {
     display:flex;
     flex-direction:row;
   }
+
+  #main-taitel {
+    font-size: 4rem;
+  }
+
+  /* search */
+  .search-places {
+    width: 30%;
+  }
+
+  .search-places-bar {
+    width: 100%;
+  }
+
+  .search-places-input-wrapper {
+    font-size: 0rem;
+  }
+
+  .search-places-bar input {
+    padding: 0.5rem 0.25rem;
+    font-size: 1.15rem;
+  }
+
+  .search-places-results {
+    font-size:  1rem;
+  }
+
+  /* map */
+  .map-view {
+    width: 70%;
+  }
+
+  #map {
+    height: 52rem;
+  }
+
 }
 
+/* Responsive web design for desktop */
 @media screen and (min-width: 1100px) {
 
   .display-one-line {
