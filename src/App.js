@@ -24,7 +24,12 @@ class App extends Component {
       {placeName:'Gdynia City Beach', lat:54.5146755, lng:18.5490399},
       {placeName:'Gdynia Seafront Promenade', lat:54.5175618, lng:18.5556129},
       {placeName:'Gdynia Film Center', lat:54.5164517, lng:18.5428894}
-    ]
+    ],
+    query: ''
+  }
+
+  updateQuery = (query) => {
+   this.setState({ query: query })
   }
 
   render() {
@@ -32,8 +37,11 @@ class App extends Component {
       <div>
         <h1 id="main-taitel">Gdynia awesome places</h1>
         <div className="display-one-line ">
+
           <Search
-            cityPlaces={this.state.places}>
+            cityPlaces={this.state.places}
+            searchQuery={this.state.query}
+            updateQuery={this.updateQuery}>
           </Search>
           <Map
             cityPlaces={this.state.places}>

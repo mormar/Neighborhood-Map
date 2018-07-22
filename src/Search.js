@@ -3,31 +3,10 @@ import './index.css';
 
 class Search extends Component {
 
-  state = {
-    query: ''
-  }
-
-  updateQuery = (query) => {
-   this.setState({ query: query })
-  }
-
-  // componentDidUpdate() {
-  //   if(this.state.query !== '') {
-  //     console.log(this.state.query);
-  //     this.props.cityPlaces.map((place) => {
-  //       if(this.state.query.toLowerCase() === place.placeName.toLowerCase().charAt()) {
-  //         console.log("test");
-  //         console.log(place.placeName);
-  //       }
-  //     })
-  //
-  //   }
-  // }
-
   render() {
     let searchedPlaces = this.props.cityPlaces.filter(
       (place) => {
-        return place.placeName.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1;
+        return place.placeName.toLowerCase().indexOf(this.props.searchQuery.toLowerCase()) !== -1;
       }
     );
     if(this.props.cityPlaces instanceof Array) {
@@ -45,12 +24,12 @@ class Search extends Component {
       <div className="search-places">
         <div className="search-places-bar">
           <div className="search-places-input-wrapper">
-            <input type="text" placeholder="Search places"
-              value={this.state.query}
-              onChange={(event) => {
-                this.updateQuery(event.target.value)
-                }
-              }/>
+              <input type="text" placeholder="Search places"
+                value={this.props.searchQuery}
+                onChange={(event) => {
+                  this.props.updateQuery(event.target.value)
+                  }
+                }/>
           </div>
         </div>
         <div className="search-places-results">
