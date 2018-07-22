@@ -10,7 +10,6 @@ body {
 
 #main-taitel {
   font-family: 'Merienda', cursive;
-  font-size: 3rem;
   text-align: center;
 }
 
@@ -48,6 +47,7 @@ body {
 
 
 @media screen and (max-width: 767px) {
+
   #main-taitel {
     font-size: 1.5rem;
   }
@@ -62,9 +62,8 @@ body {
   }
 
   .search-places-bar input {
-    padding: 0.75rem 0.25rem;
+    padding: 0.5rem 0.25rem;
     font-size: 1rem;
-    font-family: 'Merienda', cursive;
   }
 
   .search-places-results {
@@ -78,6 +77,7 @@ body {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1099px) {
+
   .display-one-line {
     display:flex;
     flex-direction:row;
@@ -85,9 +85,38 @@ body {
 }
 
 @media screen and (min-width: 1100px) {
+
   .display-one-line {
     display:flex;
     flex-direction:row;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #main-taitel {
+    font-size: 3rem;
+  }
+
+  /* search */
+  .search-places {
+    width: 26%;
+  }
+
+  .search-places-input-wrapper {
+    font-size: 0.75rem;
+  }
+
+  .search-places-bar input {
+    font-size: 1.5rem;
+  }
+
+  .search-places-results {
+    font-size:  1.25rem;
+  }
+
+  /* map */
+  .map-view {
+    width: 74%;
   }
 
 }
