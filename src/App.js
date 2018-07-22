@@ -25,11 +25,42 @@ class App extends Component {
       {placeName:'Gdynia Seafront Promenade', lat:54.5175618, lng:18.5556129},
       {placeName:'Gdynia Film Center', lat:54.5164517, lng:18.5428894}
     ],
-    query: ''
+    query: '',
+    findplaces: []
+  }
+
+  componentDidMount() {
+      window.state = this.state;
   }
 
   updateQuery = (query) => {
    this.setState({ query: query })
+  }
+
+  searchedPlaces = function() {
+
+    console.log(window.state.places);
+    console.log(this.state.places);
+
+    let searchedPlaces = this.state.places.filter(
+      (place) => {
+        return place.placeName.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1;
+      }
+    );
+    if(this.state.places instanceof Array) {
+      searchedPlaces = (
+        <ol className="places-list">
+          {searchedPlaces.map((place) => (
+            <li key={place.placeName}>
+              {place.placeName}
+            </li>
+          ))}
+        </ol>
+      )
+    }
+
+    return searchedPlaces
+
   }
 
   render() {
@@ -37,14 +68,15 @@ class App extends Component {
       <div>
         <h1 id="main-taitel">Gdynia awesome places</h1>
         <div className="display-one-line ">
-
           <Search
             cityPlaces={this.state.places}
             searchQuery={this.state.query}
-            updateQuery={this.updateQuery}>
+            updateQuery={this.updateQuery}
+            searchedPlaces={this.searchedPlaces}>
           </Search>
           <Map
-            cityPlaces={this.state.places}>
+            cityPlaces={this.state.places}
+            searchedPlaces={this.searchedPlaces}>
           </Map>
         </div>
       </div>

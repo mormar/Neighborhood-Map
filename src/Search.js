@@ -4,22 +4,22 @@ import './index.css';
 class Search extends Component {
 
   render() {
-    let searchedPlaces = this.props.cityPlaces.filter(
-      (place) => {
-        return place.placeName.toLowerCase().indexOf(this.props.searchQuery.toLowerCase()) !== -1;
-      }
-    );
-    if(this.props.cityPlaces instanceof Array) {
-      searchedPlaces = (
-        <ol className="places-list">
-          {searchedPlaces.map((place) => (
-            <li key={place.placeName}>
-              {place.placeName}
-            </li>
-          ))}
-        </ol>
-      )
-    }
+    // let searchedPlaces = this.props.cityPlaces.filter(
+    //   (place) => {
+    //     return place.placeName.toLowerCase().indexOf(this.props.searchQuery.toLowerCase()) !== -1;
+    //   }
+    // );
+    // if(this.props.cityPlaces instanceof Array) {
+    //   searchedPlaces = (
+    //     <ol className="places-list">
+    //       {searchedPlaces.map((place) => (
+    //         <li key={place.placeName}>
+    //           {place.placeName}
+    //         </li>
+    //       ))}
+    //     </ol>
+    //   )
+    // }
     return (
       <div className="search-places">
         <div className="search-places-bar">
@@ -33,7 +33,7 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-places-results">
-          {searchedPlaces}
+          {this.props.searchedPlaces()}
         </div>
       </div>
     );
