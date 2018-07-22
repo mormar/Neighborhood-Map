@@ -10,4 +10,5 @@ Creating finally project Neighborhood Map (React) for the Front-End Web Develope
 
 ## Dependencies
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).<br/>
-[Google Fonts](https://fonts.google.com/specimen/Merienda?selection.family=Merienda)
+[Google Fonts](https://fonts.google.com/specimen/Merienda?selection.family=Merienda) <br/>
+[react-responsive](https://github.com/contra/react-responsive)
