@@ -29,10 +29,6 @@ class App extends Component {
     findplaces: []
   }
 
-  componentDidMount() {
-      window.state = this.state;
-  }
-
   updateQuery = (query) => {
    this.setState({ query: query })
   }
