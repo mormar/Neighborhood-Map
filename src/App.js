@@ -37,20 +37,17 @@ class App extends Component {
    this.setState({ query: query })
   }
 
-  searchedPlaces = function() {
+  searchedPlaces = function(placesLocation, query) {
 
-    console.log(window.state.places);
-    console.log(this.state.places);
-
-    let searchedPlaces = this.state.places.filter(
+    let searchedLocation = placesLocation.filter(
       (place) => {
-        return place.placeName.toLowerCase().indexOf(this.state.query.toLowerCase()) !== -1;
+        return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
       }
     );
-    if(this.state.places instanceof Array) {
-      searchedPlaces = (
+    if(placesLocation instanceof Array) {
+      searchedLocation = (
         <ol className="places-list">
-          {searchedPlaces.map((place) => (
+          {searchedLocation.map((place) => (
             <li key={place.placeName}>
               {place.placeName}
             </li>
@@ -59,7 +56,7 @@ class App extends Component {
       )
     }
 
-    return searchedPlaces
+    return searchedLocation
 
   }
 
