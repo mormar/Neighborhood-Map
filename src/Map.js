@@ -26,8 +26,8 @@ class Map extends Component {
 
     for (let allPlaces = 0; allPlaces < searchedPlacesMap.props.children.length; allPlaces++) {
           let place = searchedPlacesMap.props.children[allPlaces];
-          console.log(searchedPlacesMap.props.children);
-          console.log(place);
+          // console.log(searchedPlacesMap.props.children);
+          // console.log(place);
 
           let infowindow = new google.maps.InfoWindow({
           content: place.props.children,
@@ -42,11 +42,12 @@ class Map extends Component {
                 infowindow.open(map, marker);
           });
     }
+    console.log(searchedPlacesMap);
   }
 
   render() {
     // console.log(this.props.cityPlaces);
-    // console.log(this.props.searchedPlaces)
+
 
     return (
       <div className="map-view">

@@ -44,7 +44,7 @@ class App extends Component {
       searchedLocation = (
         <ol className="places-list">
           {searchedLocation.map((place) => (
-            <li key={place.placeName} lat={place.lat} lng={place.lng}>
+            <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName}>
               {place.placeName}
             </li>
           ))}
@@ -59,7 +59,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1 id="main-taitel">Gdynia awesome places</h1>
+        <h1 id="main-taitel" aria-label="Gdynia awesome places" >Gdynia awesome places</h1>
         <div className="display-one-line ">
           <Search
             cityPlaces={this.state.places}

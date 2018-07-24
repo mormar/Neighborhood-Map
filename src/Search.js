@@ -9,7 +9,7 @@ class Search extends Component {
       <div className="search-places">
         <div className="search-places-bar">
           <div className="search-places-input-wrapper">
-              <input type="text" placeholder="Search places"
+              <input type="text" placeholder="Search places" aria-label="Input search places"
                 value={this.props.searchQuery}
                 onChange={(event) => {
                   this.props.updateQuery(event.target.value)
@@ -19,7 +19,7 @@ class Search extends Component {
         </div>
         <div className="search-places-results">
           {this.props.searchedPlaces(this.props.cityPlaces, this.props.searchQuery)}
-          {console.log(this.props.searchedPlaces(this.props.cityPlaces, this.props.searchQuery))}
+          {/* {console.log(this.props.searchedPlaces(this.props.cityPlaces, this.props.searchQuery))} */}
         </div>
       </div>
     );
