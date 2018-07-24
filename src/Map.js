@@ -30,7 +30,7 @@ class Map extends Component {
           console.log(place);
 
           let infowindow = new google.maps.InfoWindow({
-          content: place.props.children.placeName,
+          content: place.props.children,
           });
 
           let marker = new google.maps.Marker({
