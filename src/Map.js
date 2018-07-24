@@ -19,15 +19,22 @@ class Map extends Component {
       zoom: 13
     });
 
-    for (let allPlaces = 0; allPlaces < window.props.cityPlaces.length; allPlaces++) {
-          let place = window.props.cityPlaces[allPlaces];
+    let searchedPlacesMap = window.props.searchedPlaces(window.props.cityPlaces, window.props.searchQuery);
+    // console.log(searchedPlacesMap);
+    // console.log(window.props.cityPlaces);
+    // console.log(window.props.searchQuery);
+
+    for (let allPlaces = 0; allPlaces < searchedPlacesMap.props.children.length; allPlaces++) {
+          let place = searchedPlacesMap.props.children[allPlaces];
+          console.log(searchedPlacesMap.props.children);
+          console.log(place);
 
           let infowindow = new google.maps.InfoWindow({
-          content: place.placeName,
+          content: place.props.children.placeName,
           });
 
           let marker = new google.maps.Marker({
-            position: {lat: place.lat, lng: place.lng},
+            position: {lat: place.props.lat, lng: place.props.lng},
             map: map,
           });
 
@@ -38,7 +45,8 @@ class Map extends Component {
   }
 
   render() {
-    console.log(this.props.cityPlaces);
+    // console.log(this.props.cityPlaces);
+    // console.log(this.props.searchedPlaces)
 
     return (
       <div className="map-view">

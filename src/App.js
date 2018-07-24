@@ -44,7 +44,7 @@ class App extends Component {
       searchedLocation = (
         <ol className="places-list">
           {searchedLocation.map((place) => (
-            <li key={place.placeName}>
+            <li key={place.placeName} lat={place.lat} lng={place.lng}>
               {place.placeName}
             </li>
           ))}
@@ -69,7 +69,8 @@ class App extends Component {
           </Search>
           <Map
             cityPlaces={this.state.places}
-            searchedPlaces={this.searchedPlaces}>
+            searchedPlaces={this.searchedPlaces}
+            searchQuery={this.state.query}>
           </Map>
         </div>
       </div>
