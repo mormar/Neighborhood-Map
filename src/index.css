@@ -25,6 +25,10 @@ body {
   font-family: 'Merienda', cursive;
 }
 
+.place {
+  background-color: #fff;
+}
+
 /* Responsive web design for mobile */
 @media screen and (max-width: 767px) {
 

@@ -33,6 +33,13 @@ class App extends Component {
    this.setState({ query: query })
   }
 
+  onListClick = function (event) {
+
+    console.log("Work");
+    event.currentTarget.style.backgroundColor = '#f00';
+
+  }
+
   searchedPlaces = function(placesLocation, query) {
 
     let searchedLocation = placesLocation.filter(
@@ -44,7 +51,7 @@ class App extends Component {
       searchedLocation = (
         <ol className="places-list">
           {searchedLocation.map((place) => (
-            <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName}>
+            <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place" onClick={this.onListClick}>
               {place.placeName}
             </li>
           ))}

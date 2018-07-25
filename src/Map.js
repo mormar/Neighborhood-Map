@@ -47,7 +47,7 @@ class Map extends Component {
           });
     }
     console.log(searchedPlacesMap);
-    {console.log(window.props.searchQuery)}
+    console.log(window.props.searchQuery)
     console.log(this.props.searchQuery);
   }
 
