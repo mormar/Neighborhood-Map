@@ -26,21 +26,31 @@ class App extends Component {
       {placeName:'Gdynia Film Center', lat:54.5164517, lng:18.5428894}
     ],
     query: '',
-    findplaces: []
+    findplaces: [],
+    clickFlag: false
   }
 
   updateQuery = (query) => {
    this.setState({ query: query })
   }
 
-  onListClick = function (event) {
+  onListClick = (event) => {
 
-    console.log("Work");
-    event.currentTarget.style.backgroundColor = '#f00';
+    if(this.state.clickFlag === false) {
+      console.log("Work");
+      event.currentTarget.style.backgroundColor = '#f00';
+      this.setState({clickFlag: true});
+    }
+    else {
+      event.currentTarget.style.backgroundColor = '#fff';
+      this.setState({clickFlag: false});
+
+    }
 
   }
 
   searchedPlaces = function(placesLocation, query) {
+    console.log(this);
 
     let searchedLocation = placesLocation.filter(
       (place) => {
@@ -72,12 +82,14 @@ class App extends Component {
             cityPlaces={this.state.places}
             searchQuery={this.state.query}
             updateQuery={this.updateQuery}
-            searchedPlaces={this.searchedPlaces}>
+            searchedPlaces={this.searchedPlaces}
+            onListClick={this.onListClick}>
           </Search>
           <Map
             cityPlaces={this.state.places}
             searchedPlaces={this.searchedPlaces}
-            searchQuery={this.state.query}>
+            searchQuery={this.state.query}
+            onListClick={this.onListClick}>
           </Map>
         </div>
       </div>
