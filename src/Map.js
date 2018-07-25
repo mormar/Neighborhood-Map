@@ -3,9 +3,6 @@ import React, { Component } from 'react';
 import './index.css';
 
 class Map extends Component {
-  state = {
-    map: {}
-  }
 
   componentDidMount() {
       window.initMap = this.initMap;
@@ -24,14 +21,9 @@ class Map extends Component {
     });
 
     let searchedPlacesMap = window.props.searchedPlaces(window.props.cityPlaces, this.props.searchQuery);
-    // console.log(searchedPlacesMap);
-    // console.log(window.props.cityPlaces);
-    // console.log(window.props.searchQuery);
 
     for (let allPlaces = 0; allPlaces < searchedPlacesMap.props.children.length; allPlaces++) {
           let place = searchedPlacesMap.props.children[allPlaces];
-          //  console.log(place.props.children);
-          // console.log(place);
 
           let infowindow = new google.maps.InfoWindow({
           content: place.props.children,
@@ -46,15 +38,9 @@ class Map extends Component {
                 infowindow.open(map, marker);
           });
     }
-    console.log(searchedPlacesMap);
-    console.log(window.props.searchQuery)
-    console.log(this.props.searchQuery);
   }
 
   render() {
-    // console.log(this.props.cityPlaces);
-    console.log(this.props.searchQuery);
-
 
     return (
       <div className="map-view">
