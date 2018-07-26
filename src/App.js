@@ -50,7 +50,6 @@ class App extends Component {
   }
 
   searchedPlaces = function(placesLocation, query) {
-    console.log(this);
 
     let searchedLocation = placesLocation.filter(
       (place) => {
