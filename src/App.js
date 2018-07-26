@@ -28,7 +28,10 @@ class App extends Component {
     ],
     query: '',
     findplaces: [],
-    clickFlag: false
+    clickFlag: false,
+    markersArray : [],
+    activeMarker : {},
+    recentLocalMarkersFlag : true
   }
 
   componentDidMount() {
@@ -41,6 +44,7 @@ class App extends Component {
 
   updateQuery = (query) => {
    this.setState({ query: query })
+  //  this.setState({markersArray: this.initMap()})
   }
 
   initMap = function(query) {
@@ -48,110 +52,60 @@ class App extends Component {
       center: {lat: 54.5053387, lng: 18.538661},
       zoom: 13
     });
-    // return map
-    // console.log(this.state.cityPlaces);
-    // console.log(window.state.cityPlaces);
-    // console.log(this.searchedPlaces);
-    // console.log(window.app.searchedPlaces);
-    // console.log(window.state.query)
 
     let searchedPlacesMap = window.app.searchedPlaces(window.state.places, window.app.state.query);
-    // console.log(this.state.query);
-    console.log(searchedPlacesMap);
-    // console.log(query)
+
+    let localMarkers = [];
 
     for (let allPlaces = 0; allPlaces < searchedPlacesMap.props.children.length; allPlaces++) {
           let place = searchedPlacesMap.props.children[allPlaces];
-          // console.log(place);
 
           let infowindow = new google.maps.InfoWindow({
           content: place.props.children,
           });
-          console.log(map);
+
           let marker = new google.maps.Marker({
             position: {lat: place.props.lat, lng: place.props.lng},
             map: map,
           });
-          // console.log(marker);
 
           marker.addListener('click', function() {
                 infowindow.open(map, marker);
           });
-          console.log(infowindow);
-          // console.log(infowindow);
-          // console.log(place.props.id);
+
+          localMarkers.push(marker);
+
     }
-    console.log(map);
-    return map
+    console.log(localMarkers);
+    console.log(this);
+    console.log(window.app);
+
+    //window.app.setState({markersArray: localMarkers});
+    return localMarkers;
+
   }
 
 
-  onListClick = (event, map) => {
-    console.log(map);
+  onListClick = (event) => {
+
+    // this.setState({markersArray: this.initMap()})
+    console.log(this.initMap());
+
+    console.log(this.state.markersArray);
 
     if(this.state.clickFlag === false) {
       console.log("Work");
       event.currentTarget.style.backgroundColor = '#3A89B2';
       this.setState({clickFlag: true});
-      // console.log(marker);
-        console.log(event.currentTarget.id);
-        console.log(event.currentTarget);
-        console.log(event.currentTarget.lat);
-        if(event.currentTarget.id === 'Gdynia City Museum'){
-          let map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 54.5053387, lng: 18.538661},
-            zoom: 13
-          });
-          console.log('Yea');
-
-          let infowindow = new google.maps.InfoWindow({
-          content: event.currentTarget.id,
-          });
-
-          let marker = new google.maps.Marker({
-            position: {lat: 54.5160757, lng: 18.5448994},
-            map: map,
-          });
-
-          marker.addListener('click', function() {
-            infowindow.open(map, marker);
-          });
-
-          infowindow.open(map, marker);
-
-          // infowindow.open(new google.maps.Map(document.getElementById('map'), {
-          //   center: {lat: 54.5053387, lng: 18.538661},
-          //   zoom: 13
-          // }), event.currentTarget);
-
-          console.log(new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 54.5053387, lng: 18.538661},
-            zoom: 13
-          }))
-          console.log(infowindow);
-          console.log(map);
-          // infowindow.open(new google.maps.Map(document.getElementById('map'), {
-          //   center: {lat: 54.5053387, lng: 18.538661},
-          //   zoom: 13
-          // }), {lat: 54.5160757, lng: 18.5448994});
-
-          // infowindow.open(google.maps.Map(document.getElementById('map'), {
-          //   center: {lat: 54.5053387, lng: 18.538661},
-          //   zoom: 13
-          // }), marker);
-        }
-
     }
+
     else {
       event.currentTarget.style.backgroundColor = '#fff';
       this.setState({clickFlag: false});
-
     }
   }
 
   searchedPlaces = function(placesLocation, query) {
-    console.log(this);
-    console.log(query)
 
     let searchedLocation = placesLocation.filter(
       (place) => {
