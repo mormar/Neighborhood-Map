@@ -4,7 +4,6 @@ import './index.css';
 
 class Map extends Component {
 
-  
 
   componentDidUpdate() {
       this.props.initMap();
