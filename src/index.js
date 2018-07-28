@@ -10,7 +10,7 @@ import reducer from './reducer'
 
 
 const allReducers = combineReducers ({
-  date: reducer
+  data: reducer
 });
 
 const store = createStore(allReducers);

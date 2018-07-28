@@ -1,8 +1,10 @@
 /*global google*/
 import React, { Component } from 'react';
 import './App.css';
-import Map from './Map.js'
-import Search from './Search.js'
+import Map from './Map.js';
+import Search from './Search.js';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 
 class App extends Component {
 
@@ -110,6 +112,14 @@ class App extends Component {
 
   }
 
+  createListItems() {
+    return this.props.data.map((place) => {
+      return (
+        <li key={place.id}> {place.placeName}</li>
+      );
+    });
+  }
+
   render() {
     return (
       <div>
@@ -130,6 +140,9 @@ class App extends Component {
             initMap={this.initMap}>
           </Map>
         </div>
+        <ul>
+          {this.createListItems()}
+        </ul>
       </div>
     );
   }
@@ -143,4 +156,10 @@ function loadJsMap(src) {
     ref.parentNode.insertBefore(script, ref);
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    data: state.data
+  }
+}
+
+export default connect(mapStateToProps)(App);
