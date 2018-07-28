@@ -5,6 +5,7 @@ import Map from './Map.js';
 import Search from './Search.js';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import {selectPlace} from './SelectPlace.js'
 
 class App extends Component {
 
@@ -115,7 +116,7 @@ class App extends Component {
   createListItems() {
     return this.props.data.map((place) => {
       return (
-        <li key={place.id}> {place.placeName}</li>
+        <li key={place.id} onClick={() => this.props.selectPlace(place)}> {place.placeName}</li>
       );
     });
   }
@@ -162,4 +163,8 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(App);
+function matchDispatchToProps(dispatch) {
+  return bindActionCreators({selectPlace: selectPlace}, dispatch)
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(App);
