@@ -144,6 +144,10 @@ class App extends Component {
         <ul>
           {this.createListItems()}
         </ul>
+        {/* <div>
+          <h2> {this.props.place1.lat}</h2>
+          <h2> {this.props.place1.lng}</h2>
+        </div> */}
       </div>
     );
   }
@@ -162,6 +166,12 @@ function mapStateToProps(state) {
     data: state.data
   }
 }
+
+// function mapStateToProps1(state) {
+//   return {
+//     place1: state.activePlace
+//   }
+// }
 
 function matchDispatchToProps(dispatch) {
   return bindActionCreators({selectPlace: selectPlace}, dispatch)
