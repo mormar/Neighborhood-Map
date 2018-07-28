@@ -11,3 +11,4 @@ Creating finally project Neighborhood Map (React) from scratch, without any exis
 ## Dependencies
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).<br/>
 I used [Google Fonts](https://fonts.google.com/specimen/Merienda?selection.family=Merienda) <br/>
+[google-maps-react](https://www.npmjs.com/package/google-maps-react) <br/>
