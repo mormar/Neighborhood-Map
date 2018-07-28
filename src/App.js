@@ -1,3 +1,4 @@
+/*global google*/
 import React, { Component } from 'react';
 import './App.css';
 import Map from './Map.js'
@@ -30,6 +31,14 @@ class App extends Component {
     clickFlag: false
   }
 
+  componentDidMount() {
+      window.initMap = this.initMap;
+      window.props = this.props;
+      window.state = this.state;
+      window.app = this;
+      loadJsMap('https://maps.googleapis.com/maps/api/js?key=AIzaSyBlYjX2jC_PyB7Uo1E-lqnffUsySrZv3yY&callback=initMap');
+  }
+
   updateQuery = (query) => {
    this.setState({ query: query })
   }
@@ -38,15 +47,44 @@ class App extends Component {
 
     if(this.state.clickFlag === false) {
       console.log("Work");
-      event.currentTarget.style.backgroundColor = '#f00';
+      event.currentTarget.style.backgroundColor = '#3A89B2';
       this.setState({clickFlag: true});
     }
     else {
       event.currentTarget.style.backgroundColor = '#fff';
       this.setState({clickFlag: false});
+    }
+  }
+
+  initMap = function(query) {
+    let map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 54.5053387, lng: 18.538661},
+      zoom: 13
+    });
+
+    let searchedPlacesMap = window.app.searchedPlaces(window.state.places, window.app.state.query);
+
+    let localMarkers = [];
+
+    for (let allPlaces = 0; allPlaces < searchedPlacesMap.props.children.length; allPlaces++) {
+          let place = searchedPlacesMap.props.children[allPlaces];
+
+          let infowindow = new google.maps.InfoWindow({
+          content: place.props.children,
+          });
+
+          let marker = new google.maps.Marker({
+            position: {lat: place.props.lat, lng: place.props.lng},
+            map: map,
+          });
+
+          marker.addListener('click', function() {
+                infowindow.open(map, marker);
+          });
+
+          localMarkers.push(marker);
 
     }
-
   }
 
   searchedPlaces = function(placesLocation, query) {
@@ -88,12 +126,21 @@ class App extends Component {
             cityPlaces={this.state.places}
             searchedPlaces={this.searchedPlaces}
             searchQuery={this.state.query}
-            onListClick={this.onListClick}>
+            onListClick={this.onListClick}
+            initMap={this.initMap}>
           </Map>
         </div>
       </div>
     );
   }
+}
+
+function loadJsMap(src) {
+    let ref = window.document.getElementsByTagName("script")[0];
+    let script = window.document.createElement("script");
+    script.src = src;
+    script.async = true;
+    ref.parentNode.insertBefore(script, ref);
 }
 
 export default App;
