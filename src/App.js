@@ -116,7 +116,8 @@ class App extends Component {
   createListItems() {
     return this.props.data.map((place) => {
       return (
-        <li key={place.id} onClick={() => this.props.selectPlace(place)}> {place.placeName}</li>
+        <li key={place.id} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place"
+            onClick={() => this.props.selectPlace(place)}> {place.placeName}</li>
       );
     });
   }
@@ -141,9 +142,11 @@ class App extends Component {
             initMap={this.initMap}>
           </Map>
         </div>
-        <ul>
-          {this.createListItems()}
-        </ul>
+        <div className="search-places-results">
+          <ol className="places-list">
+            {this.createListItems()}
+          </ol>
+        </div>
         {/* <div>
           <h2> {this.props.place1.lat}</h2>
           <h2> {this.props.place1.lng}</h2>
