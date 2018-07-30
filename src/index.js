@@ -6,8 +6,10 @@ import registerServiceWorker from './registerServiceWorker';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import {combineReducers} from 'redux';
-import reducer from './reducer'
-import ActivPlace from './ActivPlace'
+import reducer from './reducer';
+import ActivPlace from './ActivPlace';
+import Search from './Search';
+import Map from './Map';
 
 
 const allReducers = combineReducers ({

@@ -20,6 +20,7 @@ class Search extends Component {
         <div className="search-places-results">
           {this.props.searchedPlaces(this.props.cityPlaces, this.props.searchQuery)}
           {/* {this.props.searchedPlaces(this.props.placeName, this.props.searchQuery)} */}
+          {console.log(this.props.cityPlaces)}
         </div>
       </div>
     );
