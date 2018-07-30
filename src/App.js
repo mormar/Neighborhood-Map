@@ -65,6 +65,9 @@ class App extends Component {
       zoom: 13
     });
 
+    // {console.log(this.props.data)}
+
+
     let searchedPlacesMap = window.app.searchedPlaces(window.state.places, window.app.state.query);
 
     let localMarkers = [];
@@ -116,7 +119,7 @@ class App extends Component {
   createListItems() {
     return this.props.data.map((place) => {
       return (
-        <li key={place.id} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place"
+        <li key={place.id} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place" id={place.id}
             onClick={() => this.props.selectPlace(place)}> {place.placeName}</li>
       );
     });
@@ -132,7 +135,8 @@ class App extends Component {
             searchQuery={this.state.query}
             updateQuery={this.updateQuery}
             searchedPlaces={this.searchedPlaces}
-            onListClick={this.onListClick}>
+            onListClick={this.onListClick}
+            createListItems={this.createListItems}>
           </Search>
           <Map
             cityPlaces={this.state.places}
@@ -145,6 +149,7 @@ class App extends Component {
         <div className="search-places-results">
           <ol className="places-list">
             {this.createListItems()}
+            {console.log(this.props.data)}
           </ol>
         </div>
         {/* <div>

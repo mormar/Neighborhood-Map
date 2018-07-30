@@ -19,6 +19,7 @@ class Search extends Component {
         </div>
         <div className="search-places-results">
           {this.props.searchedPlaces(this.props.cityPlaces, this.props.searchQuery)}
+          {/* {this.props.searchedPlaces(this.props.placeName, this.props.searchQuery)} */}
         </div>
       </div>
     );
