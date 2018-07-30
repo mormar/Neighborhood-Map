@@ -11,7 +11,6 @@ class App extends Component {
 
   state = {
     query: '',
-    findplaces: [],
     clickFlag: false
   }
 
@@ -51,8 +50,6 @@ class App extends Component {
 
     let searchedPlacesMap = window.app.searchedPlaces(window.props.data, window.app.state.query);
 
-    let localMarkers = [];
-
     for (let allPlaces = 0; allPlaces < searchedPlacesMap.props.children.length; allPlaces++) {
           let place = searchedPlacesMap.props.children[allPlaces];
 
@@ -68,8 +65,6 @@ class App extends Component {
           marker.addListener('click', function() {
                 infowindow.open(map, marker);
           });
-
-          localMarkers.push(marker);
 
     }
   }
@@ -134,10 +129,10 @@ class App extends Component {
             {console.log(this.props.data)}
           </ol>
         </div>
-        {/* <div>
-          <h2> {this.props.place1.lat}</h2>
-          <h2> {this.props.place1.lng}</h2>
-        </div> */}
+        <div>
+          <h2> {this.props.activePlace === null ? '' : this.props.activePlace.lat}</h2>
+          <h2> {this.props.activePlace === null ? '' : this.props.activePlace.lng}</h2>
+        </div>
       </div>
     );
   }
@@ -153,13 +148,14 @@ function loadJsMap(src) {
 
 function mapStateToProps(state) {
   return {
-    data: state.data
+    data: state.data,
+    activePlace: state.activePlace
   }
 }
 
-// function mapStateToProps1(state) {
+// function mapStateToProps(state) {
 //   return {
-//     place1: state.activePlace
+//     activePlace: state.activePlace
 //   }
 // }
 
