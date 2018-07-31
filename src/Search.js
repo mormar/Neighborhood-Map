@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './index.css';
 
 class Search extends Component {
 
+  constructor(markers) {
+    super();
+    this.markers = markers;
+  }
+
   render() {
 
+    console.log(this.markers);
     return (
       <div className="search-places">
         <div className="search-places-bar">
@@ -27,4 +34,8 @@ class Search extends Component {
   }
 }
 
-export default Search;
+const mapStateToProps = state => {
+  return {markers: state.markers };
+};
+
+export default connect(mapStateToProps)(Search);

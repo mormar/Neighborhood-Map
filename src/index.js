@@ -11,12 +11,21 @@ import registerServiceWorker from './registerServiceWorker';
 // import Search from './Search';
 // import Map from './Map';
 import { createStore } from 'redux';
+import { render } from "react-dom";
+import { Provider } from "react-redux";
 import { addMarker } from './actions.js';
 import rootReducer from './reducer.js';
 
 const store = createStore(rootReducer);
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
+
+// ReactDOM.render(<App/>, document.getElementById('root'));
 registerServiceWorker();
 
 export default store;
