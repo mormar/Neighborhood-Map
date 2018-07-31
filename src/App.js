@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 import './App.css';
 import Map from './Map.js';
 import Search from './Search.js';
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
-import {selectPlace} from './SelectPlace.js'
+// import {bindActionCreators} from 'redux';
+// import {connect} from 'react-redux';
+// import {selectPlace} from './SelectPlace.js'
 
 class App extends Component {
 
-  state = {
-    query: '',
-    clickFlag: false
-  }
+  // state = {
+  //   query: '',
+  //   clickFlag: false
+  // }
 
   componentDidMount() {
       window.initMap = this.initMap;
@@ -48,25 +48,25 @@ class App extends Component {
     // {console.log(this.props.data.placeName)}
 
 
-    let searchedPlacesMap = window.app.searchedPlaces(window.props.data, window.app.state.query);
+    // let searchedPlacesMap = window.app.searchedPlaces(window.props.data, window.app.state.query);
 
-    for (let allPlaces = 0; allPlaces < searchedPlacesMap.props.children.length; allPlaces++) {
-          let place = searchedPlacesMap.props.children[allPlaces];
-
-          let infowindow = new google.maps.InfoWindow({
-          content: place.props.children,
-          });
-
-          let marker = new google.maps.Marker({
-            position: {lat: place.props.lat, lng: place.props.lng},
-            map: map,
-          });
-
-          marker.addListener('click', function() {
-                infowindow.open(map, marker);
-          });
-
-    }
+    // for (let allPlaces = 0; allPlaces < searchedPlacesMap.props.children.length; allPlaces++) {
+    //       let place = searchedPlacesMap.props.children[allPlaces];
+    //
+    //       let infowindow = new google.maps.InfoWindow({
+    //       content: place.props.children,
+    //       });
+    //
+    //       let marker = new google.maps.Marker({
+    //         position: {lat: place.props.lat, lng: place.props.lng},
+    //         map: map,
+    //       });
+    //
+    //       marker.addListener('click', function() {
+    //             infowindow.open(map, marker);
+    //       });
+    //
+    // }
   }
 
   searchedPlaces = function(placesLocation, query) {
@@ -108,22 +108,24 @@ class App extends Component {
         <h1 id="main-taitel" aria-label="Gdynia awesome places" >Gdynia awesome places</h1>
         <div className="display-one-line ">
           <Search
-            cityPlaces={this.props.data}
-            searchQuery={this.state.query}
-            updateQuery={this.updateQuery}
-            searchedPlaces={this.searchedPlaces}
-            onListClick={this.onListClick}
-            createListItems={this.createListItems}>
+            // cityPlaces={this.props.data}
+            // searchQuery={this.state.query}
+            // updateQuery={this.updateQuery}
+            // searchedPlaces={this.searchedPlaces}
+            // onListClick={this.onListClick}
+            // createListItems={this.createListItems}
+            >
           </Search>
           <Map
-            cityPlaces={this.state.places}
-            searchedPlaces={this.searchedPlaces}
-            searchQuery={this.state.query}
-            onListClick={this.onListClick}
-            initMap={this.initMap}>
+            // cityPlaces={this.state.places}
+            // searchedPlaces={this.searchedPlaces}
+            // searchQuery={this.state.query}
+            // onListClick={this.onListClick}
+            // initMap={this.initMap}
+            >
           </Map>
         </div>
-        <div className="search-places-results">
+        {/* <div className="search-places-results">
           <ol className="places-list">
             {this.createListItems()}
             {console.log(this.props.data)}
@@ -132,7 +134,7 @@ class App extends Component {
         <div>
           <h2> {this.props.activePlace === null ? '' : this.props.activePlace.lat}</h2>
           <h2> {this.props.activePlace === null ? '' : this.props.activePlace.lng}</h2>
-        </div>
+        </div> */}
       </div>
     );
   }
@@ -146,21 +148,22 @@ function loadJsMap(src) {
     ref.parentNode.insertBefore(script, ref);
 }
 
-function mapStateToProps(state) {
-  return {
-    data: state.data,
-    activePlace: state.activePlace
-  }
-}
-
 // function mapStateToProps(state) {
 //   return {
+//     data: state.data,
 //     activePlace: state.activePlace
 //   }
 // }
+//
+// // function mapStateToProps(state) {
+// //   return {
+// //     activePlace: state.activePlace
+// //   }
+// // }
+//
+// function matchDispatchToProps(dispatch) {
+//   return bindActionCreators({selectPlace: selectPlace}, dispatch)
+// }
 
-function matchDispatchToProps(dispatch) {
-  return bindActionCreators({selectPlace: selectPlace}, dispatch)
-}
-
-export default connect(mapStateToProps, matchDispatchToProps)(App);
+// export default connect(mapStateToProps, matchDispatchToProps)(App);
+export default App;
