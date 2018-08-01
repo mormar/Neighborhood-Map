@@ -123,6 +123,10 @@ const rootReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         markers: [...state.markers, action.marker]
    })
+   case "UPDATE_QUERY":
+      return Object.assign({}, state, {
+        query: action.query
+   })
    default:
      return state;
   }

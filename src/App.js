@@ -102,7 +102,6 @@ class App extends Component {
   }
 
   render() {
-    {console.log(this.props.data)}
     return (
       <div>
         <h1 id="main-taitel" aria-label="Gdynia awesome places" >Gdynia awesome places</h1>
