@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './index.css';
+import { addMarker } from './actions.js';
 
 class Search extends Component {
-
-  // This is function which creates object with fields
-  constructor(markers) {
-    super();
-    this.markers = markers;
-  }
 
   render() {
 
@@ -20,6 +15,7 @@ class Search extends Component {
               <input type="text" placeholder="Search places" aria-label="Input search places"
                 // value={this.props.searchQuery}
                 onChange={(event) => {
+                  this.props.addMarker({id:69})
                   // this.props.updateQuery(event.target.value)
                   }
                 }/>
@@ -39,4 +35,11 @@ const mapStateToProps = state => {
   return {markers: state.markers };
 };
 
-export default connect(mapStateToProps)(Search);
+// React Redux Method, acces to actions in component
+const mapDispatchToProps = dispatch => {
+  return {
+    addMarker: marker => dispatch(addMarker(marker))
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

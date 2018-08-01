@@ -10,13 +10,14 @@ import registerServiceWorker from './registerServiceWorker';
 // import ActivPlace from './ActivPlace';
 // import Search from './Search';
 // import Map from './Map';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { addMarker } from './actions.js';
 import rootReducer from './reducer.js';
+import { logger } from 'redux-logger';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 render(
   <Provider store={store}>
