@@ -4,6 +4,7 @@ import './index.css';
 
 class Search extends Component {
 
+  // This is function which creates object with fields
   constructor(markers) {
     super();
     this.markers = markers;
