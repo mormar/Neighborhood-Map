@@ -4,7 +4,7 @@ import './App.css';
 import Map from './Map.js';
 import Search from './Search.js';
 // import {bindActionCreators} from 'redux';
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 // import {selectPlace} from './SelectPlace.js'
 
 class App extends Component {
@@ -93,7 +93,7 @@ class App extends Component {
   }
 
   createListItems() {
-    return this.props.data.map((place) => {
+    return this.props.places.map((place) => {
       return (
         <li key={place.id} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place" id={place.id}
             onClick={() => this.props.selectPlace(place)}> {place.placeName}</li>
@@ -112,8 +112,7 @@ class App extends Component {
             // updateQuery={this.updateQuery}
             // searchedPlaces={this.searchedPlaces}
             // onListClick={this.onListClick}
-            // createListItems={this.createListItems}
-            >
+             createListItems={this.createListItems}>
           </Search>
           <Map
             // cityPlaces={this.state.places}
@@ -124,16 +123,6 @@ class App extends Component {
             >
           </Map>
         </div>
-        {/* <div className="search-places-results">
-          <ol className="places-list">
-            {this.createListItems()}
-            {console.log(this.props.data)}
-          </ol>
-        </div>
-        <div>
-          <h2> {this.props.activePlace === null ? '' : this.props.activePlace.lat}</h2>
-          <h2> {this.props.activePlace === null ? '' : this.props.activePlace.lng}</h2>
-        </div> */}
       </div>
     );
   }
@@ -147,22 +136,12 @@ function loadJsMap(src) {
     ref.parentNode.insertBefore(script, ref);
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     data: state.data,
-//     activePlace: state.activePlace
-//   }
-// }
-//
-// // function mapStateToProps(state) {
-// //   return {
-// //     activePlace: state.activePlace
-// //   }
-// // }
-//
-// function matchDispatchToProps(dispatch) {
-//   return bindActionCreators({selectPlace: selectPlace}, dispatch)
-// }
 
-// export default connect(mapStateToProps, matchDispatchToProps)(App);
-export default App;
+const mapStateToProps = state => {
+  return {
+    query: state.query,
+    places: state.places
+  }
+}
+
+export default connect(mapStateToProps, null)(App);
