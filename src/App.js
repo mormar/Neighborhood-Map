@@ -3,16 +3,9 @@ import React, { Component } from 'react';
 import './App.css';
 import Map from './Map.js';
 import Search from './Search.js';
-// import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-// import {selectPlace} from './SelectPlace.js'
 
 class App extends Component {
-
-  // state = {
-  //   query: '',
-  //   clickFlag: false
-  // }
 
   componentDidMount() {
       window.initMap = this.initMap;
@@ -75,20 +68,9 @@ class App extends Component {
         <h1 id="main-taitel" aria-label="Gdynia awesome places" >Gdynia awesome places</h1>
         <div className="display-one-line ">
           <Search
-            // cityPlaces={this.props.data}
-            // searchQuery={this.state.query}
-            // updateQuery={this.updateQuery}
-            // searchedPlaces={this.searchedPlaces}
-            // onListClick={this.onListClick}
              createListItems={this.createListItems}>
           </Search>
-          <Map
-            // cityPlaces={this.state.places}
-            // searchedPlaces={this.searchedPlaces}
-            // searchQuery={this.state.query}
-            // onListClick={this.onListClick}
-            // initMap={this.initMap}
-            >
+          <Map>
           </Map>
         </div>
       </div>
