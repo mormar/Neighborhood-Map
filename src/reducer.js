@@ -114,7 +114,8 @@ const initialState = {
   query: '',
   findplaces: [],
   clickFlag: false,
-  markers: []
+  markers: [],
+  itemList: []
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -126,6 +127,10 @@ const rootReducer = (state = initialState, action) => {
    case "UPDATE_QUERY":
       return Object.assign({}, state, {
         query: action.query
+   })
+   case "FILTER_PLACES":
+      return Object.assign({}, state, {
+        itemList: action.filteredLocations
    })
    default:
      return state;

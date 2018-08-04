@@ -40,10 +40,10 @@ class App extends Component {
   }
 
   initMap = function(query) {
-    let map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 54.5053387, lng: 18.538661},
-      zoom: 13
-    });
+  //   let map = new google.maps.Map(document.getElementById('map'), {
+  //     center: {lat: 54.5053387, lng: 18.538661},
+  //     zoom: 13
+  //   });
 
     // {console.log(this.props.data.placeName)}
 
@@ -67,38 +67,6 @@ class App extends Component {
     //       });
     //
     // }
-  }
-
-  searchedPlaces = function(placesLocation, query) {
-
-    let searchedLocation = placesLocation.filter(
-      (place) => {
-        return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-      }
-    );
-    if(placesLocation instanceof Array) {
-      searchedLocation = (
-        <ol className="places-list">
-          {searchedLocation.map((place) => (
-            <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place" onClick={this.onListClick}>
-              {place.placeName}
-            </li>
-          ))}
-        </ol>
-      )
-    }
-
-    return searchedLocation
-
-  }
-
-  createListItems() {
-    return this.props.places.map((place) => {
-      return (
-        <li key={place.id} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place" id={place.id}
-            onClick={() => this.props.selectPlace(place)}> {place.placeName}</li>
-      );
-    });
   }
 
   render() {

@@ -4,9 +4,9 @@ import './index.css';
 
 class Map extends Component {
 
-  componentDidUpdate() {
-      this.props.initMap();
-  }
+  // componentDidUpdate() {
+  //     this.props.initMap();
+  // }
 
   render() {
 
