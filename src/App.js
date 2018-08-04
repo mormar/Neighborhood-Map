@@ -1,7 +1,7 @@
 /*global google*/
 import React, { Component } from 'react';
 import './App.css';
-import Map from './Map.js';
+import MyMap from './MyMap.js';
 import Search from './Search.js';
 import {connect} from 'react-redux';
 
@@ -9,40 +9,33 @@ class App extends Component {
 
   componentDidMount() {
       window.initMap = this.initMap;
-      window.props = this.props;
-      window.state = this.state;
-      window.app = this;
-      loadJsMap('https://maps.googleapis.com/maps/api/js?key=AIzaSyBlYjX2jC_PyB7Uo1E-lqnffUsySrZv3yY&callback=initMap');
+      // window.props = this.props;
+      // window.state = this.state;
+      // window.app = this;
+      // loadJsMap('https://maps.googleapis.com/maps/api/js?key=AIzaSyBlYjX2jC_PyB7Uo1E-lqnffUsySrZv3yY&callback=initMap');
   }
 
-  updateQuery = (query) => {
-   this.setState({ query: query })
-  }
+  // onListClick = (event) => {
+  //
+  //   if(this.state.clickFlag === false) {
+  //     console.log("Work");
+  //     event.currentTarget.style.backgroundColor = '#3A89B2';
+  //     this.setState({clickFlag: true});
+  //   }
+  //   else {
+  //     event.currentTarget.style.backgroundColor = '#fff';
+  //     this.setState({clickFlag: false});
+  //   }
+  // }
 
-  onListClick = (event) => {
-
-    if(this.state.clickFlag === false) {
-      console.log("Work");
-      event.currentTarget.style.backgroundColor = '#3A89B2';
-      this.setState({clickFlag: true});
-    }
-    else {
-      event.currentTarget.style.backgroundColor = '#fff';
-      this.setState({clickFlag: false});
-    }
-  }
-
-  initMap = function(query) {
+  // initMap = function() {
   //   let map = new google.maps.Map(document.getElementById('map'), {
   //     center: {lat: 54.5053387, lng: 18.538661},
   //     zoom: 13
   //   });
 
-    // {console.log(this.props.data.placeName)}
-
-
     // let searchedPlacesMap = window.app.searchedPlaces(window.props.data, window.app.state.query);
-
+    //
     // for (let allPlaces = 0; allPlaces < searchedPlacesMap.props.children.length; allPlaces++) {
     //       let place = searchedPlacesMap.props.children[allPlaces];
     //
@@ -60,7 +53,7 @@ class App extends Component {
     //       });
     //
     // }
-  }
+  // }
 
   render() {
     return (
@@ -70,8 +63,8 @@ class App extends Component {
           <Search
              createListItems={this.createListItems}>
           </Search>
-          <Map>
-          </Map>
+          <MyMap>
+          </MyMap>
         </div>
       </div>
     );
