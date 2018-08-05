@@ -7,14 +7,6 @@ import {connect} from 'react-redux';
 
 class App extends Component {
 
-  componentDidMount() {
-      window.initMap = this.initMap;
-      // window.props = this.props;
-      // window.state = this.state;
-      // window.app = this;
-      // loadJsMap('https://maps.googleapis.com/maps/api/js?key=AIzaSyBlYjX2jC_PyB7Uo1E-lqnffUsySrZv3yY&callback=initMap');
-  }
-
   // onListClick = (event) => {
   //
   //   if(this.state.clickFlag === false) {
@@ -26,33 +18,6 @@ class App extends Component {
   //     event.currentTarget.style.backgroundColor = '#fff';
   //     this.setState({clickFlag: false});
   //   }
-  // }
-
-  // initMap = function() {
-  //   let map = new google.maps.Map(document.getElementById('map'), {
-  //     center: {lat: 54.5053387, lng: 18.538661},
-  //     zoom: 13
-  //   });
-
-    // let searchedPlacesMap = window.app.searchedPlaces(window.props.data, window.app.state.query);
-    //
-    // for (let allPlaces = 0; allPlaces < searchedPlacesMap.props.children.length; allPlaces++) {
-    //       let place = searchedPlacesMap.props.children[allPlaces];
-    //
-    //       let infowindow = new google.maps.InfoWindow({
-    //       content: place.props.children,
-    //       });
-    //
-    //       let marker = new google.maps.Marker({
-    //         position: {lat: place.props.lat, lng: place.props.lng},
-    //         map: map,
-    //       });
-    //
-    //       marker.addListener('click', function() {
-    //             infowindow.open(map, marker);
-    //       });
-    //
-    // }
   // }
 
   render() {
