@@ -107,6 +107,10 @@ body {
   #map {
     height: 52rem;
   }
+  .map-size {
+    width: 68% !important;
+    height: 80% !important;
+  }
 
 }
 
@@ -149,6 +153,10 @@ body {
 
   #map {
     height: 43rem;
+  }
+  .map-size {
+    width: 60% !important;
+    height: 80% !important;
   }
 
 }

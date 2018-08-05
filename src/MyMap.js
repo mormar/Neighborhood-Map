@@ -16,13 +16,22 @@ class MyMap extends Component {
   }
 
   render() {
+
+    const style = {
+      width: '100%',
+      height: '100%',
+      position: 'relative'
+    }
+
     console.log(this.props.markers);
     return (
       <div className="map-view">
         <Map
           google = {this.props.google}
           initialCenter = {{lat: 54.5053387, lng: 18.538661}}
-          zoom = {13}>
+          zoom = {13}
+          style = {style}
+          className = {'map-size'}>
             {this.props.modifiedPlaces.map((place, index) => (
               <Marker
                 onClick={this.props.onMarkerClick}
