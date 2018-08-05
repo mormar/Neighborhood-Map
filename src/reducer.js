@@ -22,7 +22,11 @@ const initialState = {
   findplaces: [],
   clickFlag: false,
   markers: [],
-  itemList: []
+  itemList: [],
+  modifiedPlaces: [],
+  showingInfoWindow: false,
+  activeMarker: {},
+  selectedPlace: {}
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -37,7 +41,14 @@ const rootReducer = (state = initialState, action) => {
    })
    case "FILTER_PLACES":
       return Object.assign({}, state, {
-        itemList: action.filteredLocations
+        itemList: action.filteredLocations,
+        modifiedPlaces: action.modifiedPlaces
+   })
+   case "ON_MARKER_CLICK":
+      return Object.assign({}, state, {
+        showingInfoWindow: action.showingInfoWindow,
+        activeMarker: action.activeMarker,
+        selectedPlace: action.selectedPlace
    })
    default:
      return state;

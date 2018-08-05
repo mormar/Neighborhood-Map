@@ -21,6 +21,11 @@ export function filterPlaces(places, query) {
       return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
     }
   );
+  let modifiedPlaces = places.filter(
+    (place) => {
+      return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+    }
+  );
   if(places instanceof Array) {
     filteredLocations = (
       <ol className="places-list">
@@ -35,6 +40,19 @@ export function filterPlaces(places, query) {
 
   return {
     type: "FILTER_PLACES",
-    filteredLocations
+    filteredLocations,
+    modifiedPlaces
+  }
+}
+
+export function onMarkerClick(place, marker, e) {
+  console.log(place);
+  console.log(marker);
+  console.log(e);
+  return {
+    type: "ON_MARKER_CLICK",
+    selectedPlace: place,
+    activeMarker: marker,
+    showingInfoWindow: true
   }
 }
