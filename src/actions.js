@@ -1,5 +1,3 @@
-import React, {Component} from 'react';
-
 export function addMarker(marker) {
   return {
     type: "ADD_MARKER",
@@ -31,9 +29,6 @@ export function addMap(map) {
 }
 
 export function onMarkerClick(place, marker, e) {
-  console.log(place);
-  console.log(marker);
-  console.log(e);
   return {
     type: "ON_MARKER_CLICK",
     selectedPlace: place,

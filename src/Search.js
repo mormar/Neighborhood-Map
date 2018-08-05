@@ -31,7 +31,7 @@ class Search extends Component {
           {filteredLocations.map((place) => (
             <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place"
               onClick={(event) => {
-                this.props.map.map((marker, index) => {
+                this.props.map.forEach((marker, index) => {
                   if(place.id === index) {
                     marker.props.onClick({name: marker.props.name}, marker.marker)
                   }

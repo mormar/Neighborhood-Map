@@ -1,4 +1,3 @@
-/*global google*/
 import React, { Component } from 'react';
 import './index.css';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
