@@ -9,7 +9,7 @@ class MyMap extends Component {
 
   constructor(props) {
     super(props);
-    this.myRef = React.createRef();
+    this.myRef = [];
   }
 
   componentDidMount() {
@@ -24,14 +24,14 @@ class MyMap extends Component {
           google = {this.props.google}
           initialCenter = {{lat: 54.5053387, lng: 18.538661}}
           zoom = {13}>
-            {this.props.modifiedPlaces.map(place => (
+            {this.props.modifiedPlaces.map((place, index) => (
               <Marker
                 onClick={this.props.onMarkerClick}
                 key={place.placeName}
                 name={place.placeName}
                 title={place.placeName}
                 position={{lat: place.lat, lng: place.lng}}
-                ref={this.myRef}
+                ref={(ref) => this.myRef[index] = ref}
               />
             ))}
             <InfoWindow
