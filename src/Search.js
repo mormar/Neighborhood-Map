@@ -6,7 +6,40 @@ import { updateQuery, filterPlaces } from './actions.js';
 class Search extends Component {
 
   componentDidMount() {
-    this.props.filterPlaces(this.props.places, this.props.query);
+    this.props.filterPlaces(this.localFilteredLocations(this.props.query), this.localModifiedPlaces());
+  }
+
+  localModifiedPlaces = () => {
+    let modifiedPlaces = this.props.places.filter(
+      (place) => {
+        return place.placeName.toLowerCase().indexOf(this.props.query.toLowerCase()) !== -1;
+      }
+    );
+    return modifiedPlaces
+  }
+
+  localFilteredLocations = (query) => {
+    let filteredLocations = this.props.places.filter(
+      (place) => {
+        return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+      }
+    );
+
+    if(this.props.places instanceof Array) {
+      filteredLocations = (
+        <ol className="places-list">
+          {filteredLocations.map((place) => (
+            <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place"
+              onClick={(event) => {
+                this.props.map.current.props.onClick({name:'Test'}, this.props.map.current.marker)
+              }}>
+              {place.placeName}
+            </li>
+          ))}
+        </ol>
+      )
+    }
+    return filteredLocations
   }
 
   render() {
@@ -18,7 +51,7 @@ class Search extends Component {
               <input type="text" placeholder="Search places" aria-label="Input search places"
                 onChange={(event) => {
                   this.props.updateQuery(event.target.value)
-                  this.props.filterPlaces(this.props.places, event.target.value)
+                  this.props.filterPlaces(this.localFilteredLocations(event.target.value), this.localModifiedPlaces());
                   }
                 }/>
           </div>
@@ -34,7 +67,8 @@ class Search extends Component {
 const mapStateToProps = state => {
   return {places: state.places,
           itemList: state.itemList,
-          query: state.query};
+          query: state.query,
+          map: state.map};
 };
 
 // React Redux Method, acces to actions in component

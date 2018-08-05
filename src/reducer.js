@@ -26,11 +26,16 @@ const initialState = {
   modifiedPlaces: [],
   showingInfoWindow: false,
   activeMarker: {},
-  selectedPlace: {}
+  selectedPlace: {},
+  map: []
 }
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+   case "ADD_MAP":
+      return Object.assign({}, state, {
+        map: action.map
+   })
    case "ADD_MARKER":
       return Object.assign({}, state, {
         markers: [...state.markers, action.marker]

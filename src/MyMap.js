@@ -3,24 +3,17 @@ import React, { Component } from 'react';
 import './index.css';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import {connect} from 'react-redux';
-import { onMarkerClick, addMarker } from './actions.js'
+import { onMarkerClick, addMarker, addMap } from './actions.js'
 
 class MyMap extends Component {
 
-  state = {
-    map: this.props.modifiedPlaces.map(place => (
-      <Marker
-        onClick={this.props.onMarkerClick}
-        key={place.placeName}
-        name={place.placeName}
-        title={place.placeName}
-        position={{lat: place.lat, lng: place.lng}}
-      />
-    ))
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
   }
 
   componentDidMount() {
-    this.props.addMarker(this.state.map);
+    this.props.addMap(this.myRef)
   }
 
   render() {
@@ -31,7 +24,16 @@ class MyMap extends Component {
           google = {this.props.google}
           initialCenter = {{lat: 54.5053387, lng: 18.538661}}
           zoom = {13}>
-          {this.state.map}
+            {this.props.modifiedPlaces.map(place => (
+              <Marker
+                onClick={this.props.onMarkerClick}
+                key={place.placeName}
+                name={place.placeName}
+                title={place.placeName}
+                position={{lat: place.lat, lng: place.lng}}
+                ref={this.myRef}
+              />
+            ))}
             <InfoWindow
               marker={this.props.activeMarker}
               visible={this.props.showingInfoWindow}>
@@ -58,7 +60,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onMarkerClick: (place, marker, e) => dispatch(onMarkerClick(place, marker, e)),
-    addMarker: (marker) => dispatch(addMarker(marker))
+    addMarker: (marker) => dispatch(addMarker(marker)),
+    addMap: (map) => dispatch(addMap(map))
   }
 }
 

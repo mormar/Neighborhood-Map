@@ -14,34 +14,19 @@ export function updateQuery(query) {
   }
 }
 
-export function filterPlaces(places, query) {
-
-  let filteredLocations = places.filter(
-    (place) => {
-      return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-    }
-  );
-  let modifiedPlaces = places.filter(
-    (place) => {
-      return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
-    }
-  );
-  if(places instanceof Array) {
-    filteredLocations = (
-      <ol className="places-list">
-        {filteredLocations.map((place) => (
-          <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place">
-            {place.placeName}
-          </li>
-        ))}
-      </ol>
-    )
-  }
+export function filterPlaces(filteredLocations, modifiedPlaces) {
 
   return {
     type: "FILTER_PLACES",
     filteredLocations,
     modifiedPlaces
+  }
+}
+
+export function addMap(map) {
+  return {
+    type: "ADD_MAP",
+    map
   }
 }
 
