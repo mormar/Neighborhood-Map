@@ -6,13 +6,13 @@ import { updateQuery, filterPlaces } from './actions.js';
 class Search extends Component {
 
   componentDidMount() {
-    this.props.filterPlaces(this.localFilteredLocations(this.props.query), this.localModifiedPlaces());
+    this.props.filterPlaces(this.localFilteredLocations(this.props.query), this.localModifiedPlaces(this.props.query));
   }
 
-  localModifiedPlaces = () => {
+  localModifiedPlaces = (query) => {
     let modifiedPlaces = this.props.places.filter(
       (place) => {
-        return place.placeName.toLowerCase().indexOf(this.props.query.toLowerCase()) !== -1;
+        return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
       }
     );
     return modifiedPlaces
@@ -31,9 +31,11 @@ class Search extends Component {
           {filteredLocations.map((place) => (
             <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place"
               onClick={(event) => {
-                this.props.map.forEach((marker, index) => {
-                  if(place.id === index) {
-                    marker.props.onClick({name: marker.props.name}, marker.marker)
+                this.props.map.forEach((marker) => {
+                  if(marker){
+                    if(place.placeName === marker.props.name) {
+                      marker.props.onClick({name: marker.props.name}, marker.marker)
+                    }
                   }
                 })
               }}>
@@ -55,7 +57,7 @@ class Search extends Component {
               <input type="text" placeholder="Search places" aria-label="Input search places"
                 onChange={(event) => {
                   this.props.updateQuery(event.target.value)
-                  this.props.filterPlaces(this.localFilteredLocations(event.target.value), this.localModifiedPlaces());
+                  this.props.filterPlaces(this.localFilteredLocations(event.target.value), this.localModifiedPlaces(event.target.value));
                   }
                 }/>
           </div>
