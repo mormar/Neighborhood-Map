@@ -8,9 +8,13 @@ Creating finally project Neighborhood Map (React) from scratch, without any exis
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
+## Offline
+Neighborhood Map uses service worker to work offline. To test it:  
+`npm run build`
+`serve -s build`
+
 ## Dependencies
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).<br/>
 [Google Fonts](https://fonts.google.com/specimen/Merienda?selection.family=Merienda) <br/>
 [google-maps-react](https://github.com/fullstackreact/google-maps-react) <br/>
 [Redux](https://github.com/reduxjs/redux) <br/>
-[Redux Offline](https://github.com/redux-offline/redux-offline) <br/>
