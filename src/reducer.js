@@ -27,7 +27,8 @@ const initialState = {
   showingInfoWindow: false,
   activeMarker: {},
   selectedPlace: {},
-  map: []
+  map: [],
+  hasError: false
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -54,6 +55,10 @@ const rootReducer = (state = initialState, action) => {
         showingInfoWindow: action.showingInfoWindow,
         activeMarker: action.activeMarker,
         selectedPlace: action.selectedPlace
+   })
+   case "ERROR":
+      return Object.assign({}, state, {
+        hasError: action.hasError
    })
    default:
      return state;

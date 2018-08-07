@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './index.css';
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import {connect} from 'react-redux';
-import { onMarkerClick, addMarker, addMap } from './actions.js'
+import { onMarkerClick, addMarker, addMap, onError } from './actions.js'
 
 class MyMap extends Component {
 
@@ -15,6 +15,10 @@ class MyMap extends Component {
     this.props.addMap(this.myRef)
   }
 
+  componentDidCatch(error, info) {
+    this.props.onError();
+  }
+
   render() {
 
     const style = {
@@ -25,6 +29,7 @@ class MyMap extends Component {
 
     return (
       <div className="map-view" role="application">
+        {this.props.hasError === false  ? (
         <Map
           google = {this.props.google}
           initialCenter = {{lat: 54.5053387, lng: 18.538661}}
@@ -50,10 +55,12 @@ class MyMap extends Component {
                 </div>
             </InfoWindow>
         </Map>
+      ): (<h1 id="error-title">Something went wrong please try reloading.</h1>)}
       </div>
     );
   }
 }
+
 
 const mapStateToProps = state => {
   return {
@@ -61,7 +68,8 @@ const mapStateToProps = state => {
     showingInfoWindow: state.showingInfoWindow,
     activeMarker: state.activeMarker,
     selectedPlace: state.selectedPlace,
-    markers: state.markers
+    markers: state.markers,
+    hasError: state.hasError
     }
   }
 
@@ -69,7 +77,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onMarkerClick: (place, marker, e) => dispatch(onMarkerClick(place, marker, e)),
     addMarker: (marker) => dispatch(addMarker(marker)),
-    addMap: (map) => dispatch(addMap(map))
+    addMap: (map) => dispatch(addMap(map)),
+    onError: () => dispatch(onError())
   }
 }
 

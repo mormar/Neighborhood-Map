@@ -36,3 +36,10 @@ export function onMarkerClick(place, marker, e) {
     showingInfoWindow: true
   }
 }
+
+export function onError(){
+  return {
+    type: "ERROR",
+    hasError: true
+  }
+}

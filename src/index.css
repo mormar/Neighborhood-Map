@@ -4,7 +4,12 @@ body {
   font-family: sans-serif;
 }
 
-#main-taitel {
+#main-title {
+  font-family: 'Merienda', cursive;
+  text-align: center;
+}
+
+#error-title {
   font-family: 'Merienda', cursive;
   text-align: center;
 }
@@ -32,7 +37,7 @@ body {
 /* Responsive web design for mobile */
 @media screen and (max-width: 767px) {
 
-  #main-taitel {
+  #main-title {
     font-size: 1.5rem;
   }
 
@@ -73,7 +78,7 @@ body {
     flex-direction:row;
   }
 
-  #main-taitel {
+  #main-title {
     font-size: 4rem;
   }
 
@@ -125,8 +130,8 @@ body {
     margin-right: auto;
   }
 
-  #main-taitel {
-    font-size: 3rem;
+  #main-title {
+    font-size: 3.5rem;
   }
 
   /* search */
