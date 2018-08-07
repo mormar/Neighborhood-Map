@@ -23,9 +23,8 @@ class MyMap extends Component {
       position: 'relative'
     }
 
-    console.log(this.props.markers);
     return (
-      <div className="map-view">
+      <div className="map-view" role="application">
         <Map
           google = {this.props.google}
           initialCenter = {{lat: 54.5053387, lng: 18.538661}}
@@ -40,6 +39,7 @@ class MyMap extends Component {
                 title={place.placeName}
                 position={{lat: place.lat, lng: place.lng}}
                 ref={(ref) => this.myRef[index] = ref}
+                aria-label={place.placeName}
               />
             ))}
             <InfoWindow

@@ -29,9 +29,9 @@ class Search extends Component {
       filteredLocations = (
         <ol className="places-list">
           {filteredLocations.map((place) => (
-            <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place" tabIndex={0}
+            <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place" tabIndex={0} role="button" aria-pressed="false"
               onKeyPress={(event) => {
-                if(event.key == 'Enter'){
+                if(event.key === 'Enter'){
                   this.props.map.forEach((marker) => {
                     if(marker){
                       if(place.placeName === marker.props.name) {
