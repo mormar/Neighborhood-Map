@@ -10,8 +10,8 @@ Creating finally project Neighborhood Map (React) from scratch, without any exis
 
 ## Offline
 Neighborhood Map uses service worker to work offline. To test it:  
-`npm run build`
-`serve -s build`
+* `npm run build`
+* `serve -s build`
 
 ## Dependencies
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).<br/>
