@@ -40,7 +40,7 @@ class MyMap extends Component {
               <Marker
                 onClick={this.props.onMarkerClick}
                 key={place.placeName}
-                name={place.placeName}
+                name={place.categories}
                 title={place.placeName}
                 position={{lat: place.lat, lng: place.lng}}
                 ref={(ref) => this.myRef[index] = ref}
@@ -51,7 +51,10 @@ class MyMap extends Component {
               marker={this.props.activeMarker}
               visible={this.props.showingInfoWindow}>
                 <div className="">
-                  <div className="">{this.props.selectedPlace.name}</div>
+                  <div className="">
+                    <h3>{this.props.selectedPlace.title}</h3>
+                    <p>{`Category: ${this.props.selectedPlace.name}`}</p>
+                  </div>
                 </div>
             </InfoWindow>
         </Map>

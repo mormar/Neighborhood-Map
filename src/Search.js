@@ -15,6 +15,7 @@ class Search extends Component {
         return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
       }
     );
+    console.log(modifiedPlaces);
     return modifiedPlaces
   }
 
@@ -34,7 +35,7 @@ class Search extends Component {
                 if(event.key === 'Enter'){
                   this.props.map.forEach((marker) => {
                     if(marker){
-                      if(place.placeName === marker.props.name) {
+                      if(place.placeName === marker.props.title) {
                         marker.props.onClick({name: marker.props.name}, marker.marker)
                       }
                     }
@@ -45,7 +46,7 @@ class Search extends Component {
               onClick={(event) => {
                 this.props.map.forEach((marker) => {
                   if(marker){
-                    if(place.placeName === marker.props.name) {
+                    if(place.placeName === marker.props.title) {
                       marker.props.onClick({name: marker.props.name}, marker.marker)
                     }
                   }

@@ -1,3 +1,10 @@
+export function initPlaces(places) {
+  return {
+    type: "INIT_PLACES",
+    places
+  }
+}
+
 export function addMarker(marker) {
   return {
     type: "ADD_MARKER",
@@ -13,7 +20,7 @@ export function updateQuery(query) {
 }
 
 export function filterPlaces(filteredLocations, modifiedPlaces) {
-
+  console.log(modifiedPlaces);
   return {
     type: "FILTER_PLACES",
     filteredLocations,
@@ -33,7 +40,8 @@ export function onMarkerClick(place, marker, e) {
     type: "ON_MARKER_CLICK",
     selectedPlace: place,
     activeMarker: marker,
-    showingInfoWindow: true
+    showingInfoWindow: true,
+    selectedPlace: {name: place.name, title: marker.title}
   }
 }
 
