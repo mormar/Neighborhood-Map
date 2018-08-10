@@ -77,6 +77,7 @@ class Search extends Component {
         </div>
         <div className="search-places-results">
           {this.props.itemList}
+          <h6 className="places-list">Developed with usage of Foursquare</h6>
         </div>
       </div>
     );
