@@ -3,7 +3,7 @@ import './App.css';
 import MyMap from './MyMap.js';
 import Search from './Search.js';
 import {connect} from 'react-redux';
-import {initPlaces, onApiError} from './actions.js';
+import {initPlaces, onApiError, filterPlaces} from './actions.js';
 import $ from 'jquery';
 
 class App extends Component {
@@ -29,11 +29,63 @@ class App extends Component {
           return {placeName: place.venue.name, lat: place.venue.location.lat, lng: place.venue.location.lng, id: place.venue.id, categories: place.venue.categories[0].name}
         })
         myInstance.props.initPlaces(places);
+        myInstance.props.filterPlaces(myInstance.localFilteredLocations(myInstance.props.query), myInstance.localModifiedPlaces(myInstance.props.query));
       },
       error: () => {
         this.props.onApiError();
       }
     })
+  }
+
+  localModifiedPlaces = (query) => {
+    let modifiedPlaces = this.props.places.filter(
+      (place) => {
+        return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+      }
+    );
+    return modifiedPlaces
+  }
+
+  localFilteredLocations = (query) => {
+    let filteredLocations = this.props.places.filter(
+      (place) => {
+        return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
+      }
+    );
+
+    if(this.props.places instanceof Array) {
+      filteredLocations = (
+        <ol className="places-list">
+          {filteredLocations.map((place) => (
+            <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place" tabIndex={0} role="button" aria-pressed="false"
+              onKeyPress={(event) => {
+                if(event.key === 'Enter'){
+                  this.props.map.forEach((marker) => {
+                    if(marker){
+                      if(place.placeName === marker.props.title) {
+                        marker.props.onClick({name: marker.props.name}, marker.marker)
+                      }
+                    }
+                  })
+                }
+              }}
+
+              onClick={(event) => {
+                this.props.map.forEach((marker) => {
+                  if(marker){
+                    if(place.placeName === marker.props.title) {
+                      marker.props.onClick({name: marker.props.name}, marker.marker)
+                    }
+                  }
+                })
+              }}>
+              {place.placeName}
+            </li>
+          ))}
+        </ol>
+      )
+    }
+    return filteredLocations
   }
 
   render() {
@@ -54,14 +106,16 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     query: state.query,
-    places: state.places
+    places: state.places,
+    map: state.map
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     initPlaces: places => dispatch(initPlaces(places)),
-    onApiError: () => dispatch(onApiError())
+    onApiError: () => dispatch(onApiError()),
+    filterPlaces: (places, query) => dispatch(filterPlaces(places, query))
   }
 }
 
