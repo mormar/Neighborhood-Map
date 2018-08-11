@@ -77,6 +77,7 @@ class Search extends Component {
         </div>
         <div className="search-places-results">
           {this.props.itemList}
+          {(this.props.onApiError === false) ? this.props.itemList : (<h6 className="places-list">Something went wrong please try reloading.</h6>)}
           <h6 className="places-list">Developed with usage of Foursquare</h6>
         </div>
       </div>
@@ -88,7 +89,8 @@ const mapStateToProps = state => {
   return {places: state.places,
           itemList: state.itemList,
           query: state.query,
-          map: state.map};
+          map: state.map,
+          onApiError: state.onApiError};
 };
 
 // React Redux Method, acces to actions in component

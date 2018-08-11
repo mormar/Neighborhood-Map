@@ -13,6 +13,9 @@ class MyMap extends Component {
 
   componentDidMount() {
     this.props.addMap(this.myRef)
+    window.gm_authFailure = () => {
+      this.props.onError();
+    }
   }
 
   componentDidCatch(error, info) {

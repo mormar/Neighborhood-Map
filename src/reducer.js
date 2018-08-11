@@ -10,7 +10,8 @@ const initialState = {
   activeMarker: {},
   selectedPlace: {},
   map: [],
-  hasError: false
+  hasError: false,
+  onApiError: false
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -45,6 +46,10 @@ const rootReducer = (state = initialState, action) => {
    case "ERROR":
       return Object.assign({}, state, {
         hasError: action.hasError
+   })
+   case "ON_API_ERROR":
+      return Object.assign({}, state, {
+        onApiError: action.onApiError
    })
    default:
      return state;

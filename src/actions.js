@@ -1,3 +1,10 @@
+export function onApiError() {
+  return {
+    type: "ON_API_ERROR",
+    onApiError: true
+  }
+}
+
 export function initPlaces(places) {
   return {
     type: "INIT_PLACES",
