@@ -15,7 +15,6 @@ class Search extends Component {
         return place.placeName.toLowerCase().indexOf(query.toLowerCase()) !== -1;
       }
     );
-    console.log(modifiedPlaces);
     return modifiedPlaces
   }
 
@@ -76,7 +75,6 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-places-results">
-          {this.props.itemList}
           {(this.props.onApiError === false) ? this.props.itemList : (<h6 className="places-list">Something went wrong please try reloading.</h6>)}
           <h6 className="places-list">Developed with usage of Foursquare</h6>
         </div>

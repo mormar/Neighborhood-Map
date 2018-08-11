@@ -27,7 +27,6 @@ export function updateQuery(query) {
 }
 
 export function filterPlaces(filteredLocations, modifiedPlaces) {
-  console.log(modifiedPlaces);
   return {
     type: "FILTER_PLACES",
     filteredLocations,
@@ -45,7 +44,6 @@ export function addMap(map) {
 export function onMarkerClick(place, marker, e) {
   return {
     type: "ON_MARKER_CLICK",
-    selectedPlace: place,
     activeMarker: marker,
     showingInfoWindow: true,
     selectedPlace: {name: place.name, title: marker.title}
