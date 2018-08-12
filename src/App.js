@@ -12,6 +12,10 @@ class App extends Component {
     this.initPlaces();
   }
 
+  componentDidCatch() {
+    this.props.onError();
+  }
+
   initPlaces = () => {
     let clientID = 'HMIBTFKLEUOI3BDXJJ3WNVKUYPNOWOLOYNVGS1G0IAGUCIY3'
     let clientSecret = 'DJH0CIZU1Y5I52OHT0ZT14VOX3Y5JMB0E45TNVHEHSPNMK11'

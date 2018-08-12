@@ -9,6 +9,10 @@ class Search extends Component {
     this.props.filterPlaces(this.localFilteredLocations(this.props.query), this.localModifiedPlaces(this.props.query));
   }
 
+  componentDidCatch() {
+    this.props.onError();
+  }
+
   localModifiedPlaces = (query) => {
     let modifiedPlaces = this.props.places.filter(
       (place) => {
@@ -29,7 +33,7 @@ class Search extends Component {
       filteredLocations = (
         <ol className="places-list">
           {filteredLocations.map((place) => (
-            <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place" tabIndex={0} role="button" 
+            <li key={place.placeName} lat={place.lat} lng={place.lng} aria-label={place.placeName} className="place" tabIndex={0} role="button"
               onKeyPress={(event) => {
                 if(event.key === 'Enter'){
                   this.props.map.forEach((marker) => {
