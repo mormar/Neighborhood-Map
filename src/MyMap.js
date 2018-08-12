@@ -48,6 +48,7 @@ class MyMap extends Component {
                 position={{lat: place.lat, lng: place.lng}}
                 ref={(ref) => this.myRef[index] = ref}
                 aria-label={place.placeName}
+                dataAddress={place.address}
               />
             ))}
             <InfoWindow
@@ -57,6 +58,7 @@ class MyMap extends Component {
                   <div className="">
                     <h3>{this.props.selectedPlace.title}</h3>
                     <p>{`Category: ${this.props.selectedPlace.name}`}</p>
+                    <p>{`Address: ${this.props.selectedPlace.address}`}</p>
                   </div>
                 </div>
             </InfoWindow>

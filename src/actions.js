@@ -42,11 +42,15 @@ export function addMap(map) {
 }
 
 export function onMarkerClick(place, marker, e) {
+  if(marker.dataAddress === undefined)
+  {
+    marker.dataAddress = " not provided"
+  }
   return {
     type: "ON_MARKER_CLICK",
     activeMarker: marker,
     showingInfoWindow: true,
-    selectedPlace: {name: place.name, title: marker.title}
+    selectedPlace: {name: place.name, title: marker.title, address: marker.dataAddress}
   }
 }
 

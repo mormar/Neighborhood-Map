@@ -26,7 +26,7 @@ class App extends Component {
       },
       success: function(data) {
         const places = data.response.groups[0].items.map((place, index) => {
-          return {placeName: place.venue.name, lat: place.venue.location.lat, lng: place.venue.location.lng, id: place.venue.id, categories: place.venue.categories[0].name}
+          return {placeName: place.venue.name, lat: place.venue.location.lat, lng: place.venue.location.lng, id: place.venue.id, categories: place.venue.categories[0].name, address: place.venue.location.address }
         })
         myInstance.props.initPlaces(places);
         myInstance.props.filterPlaces(myInstance.localFilteredLocations(myInstance.props.query), myInstance.localModifiedPlaces(myInstance.props.query));
